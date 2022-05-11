@@ -13,7 +13,7 @@ describe("HelloWorld", function () {
   });
 
   it("Should give a Hello World", async function () {
-    expect(await helloWorldContract.helloWorld()).to.equal("Hello World");
+    expect(await helloWorldContract.getText()).to.equal("Hello World");
   });
 
   it("Should set owner to deployer account", async function () {
