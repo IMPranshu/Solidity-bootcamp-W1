@@ -114,12 +114,12 @@ https://hardhat.org/guides/vscode-tests.html
 yarn init
     ...
 git init
-yarn add hardhat -d
+yarn add hardhat --dev
 yarn hardhat init
     "Create an advanced sample project that uses TypeScript"
     ...
     .gitignore? Y
-yarn add -d [list of suggested dev dependencies above]
+yarn add --dev [list of suggested dev dependencies above]
 Yarn add chai
 code .
 ```
@@ -177,7 +177,7 @@ https://www.browserstack.com/guide/what-is-test-driven-development
 # Homework
 * Read the references
 * Get to know Hardhat and Ethers.js documentation
-* Deploy the provided Ballot.sol on testnet using remix and interact with it following the * documentation
+* Deploy the provided Ballot.sol on testnet using remix and interact with it following the documentation
 * Write down some scenarios for testing
 * (Optional) Study the sample content provide in hardhat setup
   * Greeter.sol contract
