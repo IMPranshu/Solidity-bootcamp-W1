@@ -114,21 +114,63 @@ https://hardhat.org/guides/vscode-tests.html
 yarn init
     ...
 git init
-yarn add hardhat --dev
+yarn add hardhat -d
 yarn hardhat init
     "Create an advanced sample project that uses TypeScript"
     ...
     .gitignore? Y
-yarn add --dev [list of suggested dev dependencies above]
+yarn add -d [list of suggested dev dependencies above]
 Yarn add chai
 code .
 ```
+### Recommended extensions
 [Git Graph](https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph)
 
 [Mocha Test Explorer](https://marketplace.visualstudio.com/items?itemName=hbenl.vscode-mocha-test-adapter)
 
 [Solidity](https://marketplace.visualstudio.com/items?itemName=JuanBlanco.solidity)
+### Environment setup
+_.mocharc.json_ file:
+<pre><code>{
+  "require": "ts-node/register/files",
+  "timeout": 20000
+}
+</code></pre>
+_hardhat.config.ts_ file:
+<pre><code>{
+const config: HardhatUserConfig = {
+...
+  paths: { tests: "tests" },
+...
+  }
+}
+</code></pre>
+_tsconfig.json_ file:
+<pre><code>{
+const config: HardhatUserConfig = {
+...
+  "include": ["./scripts", "./tests", "./typechain"],
+...
+  }
+}
+</code></pre>
+Run command in root project folder:
 
+```
+cp .\.env.example .env
+```
+
+Edit the environment with your keys:
+
+```
+code .env
+```
+
+Test it out:
+```
+ yarn hardhat accounts 
+ yarn hardhat test 
+```
 ## Coding in VS Code
 * Syntax for typescript scripts
 * How the project operates
