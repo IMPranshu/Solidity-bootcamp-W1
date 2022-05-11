@@ -219,8 +219,6 @@ https://www.browserstack.com/guide/what-is-test-driven-development
 # Homework
 * Read the references
 * Get to know Hardhat and Ethers.js documentation
-* Deploy the provided Ballot.sol on testnet using remix and interact with it following the documentation
-* Write down some scenarios for testing
 * (Optional) Study the sample content provide in hardhat setup
   * Greeter.sol contract
   * Test scripts
