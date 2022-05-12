@@ -6,14 +6,16 @@ import { HelloWorld } from "../../typechain";
 describe("HelloWorld", function () {
   let helloWorldContract: HelloWorld;
 
-  this.beforeEach(async function () {
+  beforeEach(async function () {
     const helloWorldFactory = await ethers.getContractFactory("HelloWorld");
     helloWorldContract = await helloWorldFactory.deploy();
     await helloWorldContract.deployed();
   });
 
   it("Should give a Hello World", async function () {
-    expect(await helloWorldContract.helloWorld()).to.equal("Hello World");
+    const text = await helloWorldContract.getText();
+    const encodedText = ethers.utils.parseBytes32String(text);
+    expect(encodedText).to.equal("Hello World");
   });
 
   it("Should set owner to deployer account", async function () {
@@ -30,13 +32,19 @@ describe("HelloWorld", function () {
     ).to.be.revertedWith("Caller is not the owner");
   });
 
-  it("Should change text correctly", async function () {
-    // TODO
-    throw Error("Not implemented");
+  it("Should not allow anyone other than owner to change text", async function () {
+    const accounts = await ethers.getSigners();
+    const binaryText = ethers.utils.formatBytes32String("New Value");
+    await expect(
+      helloWorldContract.connect(accounts[1]).setText(binaryText)
+    ).to.be.revertedWith("Caller is not the owner");
   });
 
-  it("Should not allow anyone other than owner to change text", async function () {
-    // TODO
-    throw Error("Not implemented");
+  it("Should change text correctly", async function () {
+    const NEW_VALUE = "New Value";
+    const binaryText = ethers.utils.formatBytes32String(NEW_VALUE);
+    const transaction = await helloWorldContract.setText(binaryText);
+    await transaction.wait();
+    expect(await helloWorldContract.getText()).to.equal(binaryText);
   });
 });
