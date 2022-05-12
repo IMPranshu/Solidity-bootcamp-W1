@@ -114,12 +114,12 @@ https://hardhat.org/guides/vscode-tests.html
 yarn init
     ...
 git init
-yarn add hardhat -d
+yarn add hardhat --dev
 yarn hardhat init
     "Create an advanced sample project that uses TypeScript"
     ...
     .gitignore? Y
-yarn add -d [list of suggested dev dependencies above]
+yarn add --dev [list of suggested dev dependencies above]
 Yarn add chai
 code .
 ```
