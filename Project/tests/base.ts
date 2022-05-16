@@ -40,7 +40,14 @@ describe("HelloWorld", function () {
 
   it("Should change text correctly", async function () {
     // TODO
-    throw Error("Not implemented");
+    const accounts = await ethers.getSigners();
+    await expect(
+      helloWorldContract
+        // https://docs.ethers.io/v5/api/contract/contract/#Contract-connect
+        .connect(accounts[1])
+        .setText("New Value")
+    // https://ethereum-waffle.readthedocs.io/en/latest/matchers.html#revert
+    ).to.be.revertedWith("Caller is not the owner");
   });
 
   it("Should not allow anyone other than owner to change text", async function () {
